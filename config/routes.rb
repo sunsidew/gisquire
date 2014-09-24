@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'issue/index'
+
+  get 'issue/show'
+
+  get 'issue/edit'
+
+  get 'issue/update'
+
+  get 'issue/new'
+
+  get 'issue/create'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
