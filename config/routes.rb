@@ -1,16 +1,18 @@
-Rails.application.routes.draw do
-  root 'issue#index'
+Rails.application.routes.draw d
   # get 'issue/index'
+  # get 'issue/show'
+  # get 'issue/edit'
+  # get 'issue/update'
+  # get 'issue/new'
+  # get 'issue/create'
+  root 'issue#index'
+  
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'sessions#destroy', as: 'signout'
 
-  get 'issue/show'
-
-  get 'issue/edit'
-
-  get 'issue/update'
-
-  get 'issue/new'
-
-  get 'issue/create'
+  resources :sessions
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
