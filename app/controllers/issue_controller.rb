@@ -13,7 +13,11 @@ class IssueController < ApplicationController
 
   def index
     client = Octokit::Client.new(access_token: ENV['OCTOKIT_TOKEN'])
+    
     @issues = client.list_issues(ENV['OCTOKIT_TARGET_REPO'])#, state: "closed")
+    @milestones = client.list_milestones(ENV['OCTOKIT_TARGET_REPO'])
+    @labels = client.labels(ENV['OCTOKIT_TARGET_REPO'])
+    @assignees = client.repo_assignees(ENV['OCTOKIT_TARGET_REPO'])
   end
 
   def show

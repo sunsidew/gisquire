@@ -1,9 +1,66 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<nav id="navbar-example" class="navbar navbar-default navbar-static" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/issue">Gisquire</a>
+    </div>
+    
+    <div id="dropdowns">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+            Milestones <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <% @milestones.each do |ms| %>
+              <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="http://twitter.com/fat">
+                  <%= ms.title %>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+            Labels <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <% @labels.each do |lb| %>
+              <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="http://twitter.com/fat">
+                  <span class="glyphicon glyphicon-tag" style="color: #<%= lb.color %>;"></span>
+                  . <%= lb.name %>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+            Assignees <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <% @assignees.each do |as| %>
+              <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="http://twitter.com/fat">
+                  <img src="<%= as.avatar_url %>" width="25px" height="25px"/> . <%= as.login %>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>
 
 <table class="table table-striped">
   <thead>
   	<tr>
-  		<th>#</th>
+  	<th>#</th>
 		<th>Issue title</th>
 		<th>State</th>
 	</tr>
