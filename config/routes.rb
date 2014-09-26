@@ -1,4 +1,4 @@
-Rails.application.routes.draw d
+Rails.application.routes.draw do
   # get 'issue/index'
   # get 'issue/show'
   # get 'issue/edit'
@@ -6,7 +6,7 @@ Rails.application.routes.draw d
   # get 'issue/new'
   # get 'issue/create'
   root 'issue#index'
-  
+
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
