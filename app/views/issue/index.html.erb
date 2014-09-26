@@ -1,2 +1,33 @@
-<h1>Issue#index</h1>
-<p>Find me in app/views/issue/index.html.erb</p>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<table class="table table-striped">
+  <thead>
+  	<tr>
+  		<th>
+			#
+		</th>
+		<th>
+			Issue title
+		</th>
+		<th>
+			State
+		</th>
+	</tr>
+  </thead>
+  <tbody>
+  	<% @issues.each do |issue| %>	
+  		<tr>
+  			<td>
+  				<%= issue.number %>
+  			</td>
+  			<td>
+  				<h4><%= issue.title %><br/>
+  				<small>opened at <%= issue.created_at %> by <%= issue.user.login %></small></h4>
+  			</td>
+        <td>
+          <%= issue.state %>
+        </td>
+  		</tr>
+	<% end %>
+  </tbody>
+</table>
