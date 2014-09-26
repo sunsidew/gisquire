@@ -1,17 +1,20 @@
 Rails.application.routes.draw do
+  
   # get 'issue/index'
   # get 'issue/show'
   # get 'issue/edit'
   # get 'issue/update'
   # get 'issue/new'
   # get 'issue/create'
-  root 'issue#index'
+  root 'access#index'
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
+  get 'not_allow', to: 'access#not_allow'
 
-  resources :sessions
+  resources :issue, only: [:index]
+  resources :sessions, only: [:create, :destroy]
   
 
   # The priority is based upon order of creation: first created -> highest priority.
