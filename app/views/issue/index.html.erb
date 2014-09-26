@@ -3,30 +3,20 @@
 <table class="table table-striped">
   <thead>
   	<tr>
-  		<th>
-			#
-		</th>
-		<th>
-			Issue title
-		</th>
-		<th>
-			State
-		</th>
+  		<th>#</th>
+		<th>Issue title</th>
+		<th>State</th>
 	</tr>
   </thead>
   <tbody>
   	<% @issues.each do |issue| %>	
   		<tr>
-  			<td>
-  				<%= issue.number %>
-  			</td>
+  			<td><%= issue.number %></td>
   			<td>
   				<h4><%= issue.title %><br/>
   				<small>opened at <%= issue.created_at %> by <%= issue.user.login %></small></h4>
   			</td>
-        <td>
-          <%= issue.state %>
-        </td>
+        	<td><%= issue.state %></td>
   		</tr>
 	<% end %>
   </tbody>

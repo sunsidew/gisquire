@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'issue/index'
+  root 'issue#index'
+  # get 'issue/index'
 
   get 'issue/show'
 
