@@ -1,0 +1,107 @@
+
+<nav id="navbar-example" class="navbar navbar-default navbar-static" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/issue"> Clear filters </a>
+    </div>
+    
+    <div id="dropdowns">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+            State <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li role="presentation">
+              <%= link_to "open", params.merge({state: "open"}) %>
+            </li>
+            <li role="presentation">
+              <%= link_to "closed", params.merge({state: "closed"}) %>
+            </li>
+            <li role="presentation">
+              <%= link_to "all", params.merge({state: "all"}) %>
+            </li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+            Milestones <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li role="presentation">
+              <%= link_to "Issues with no milestone", params.merge({milestone: "none"}) %>
+            </li>
+            <li role="presentation" class="divider"></li>
+            <% @milestones.each do |ms| %>
+              <li role="presentation">
+                <%= link_to ms.title, params.merge({milestone: ms.number}) %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+            Labels <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li role="presentation">
+              <%= link_to "Unlabeled", params.except(:labels) %>
+            </li>
+            <li role="presentation" class="divider"></li>
+            <% @labels.each do |lb| %>
+              <li role="presentation">
+                <%= link_to params.merge({labels: label_list(lb.name)}), role: "menuitem" do %>
+                    <span class="glyphicon glyphicon-tag" style="color: #<%= lb.color %>;"></span> <%= lb.name %>
+                  <% end %>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+            Assignees <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li role="presentation">
+              <%= link_to "Assigned to nobody", params.merge({assignee: "none"}) %>
+            </li>
+            <li role="presentation" class="divider"></li>
+            <% @assignees.each do |as| %>
+              <li role="presentation">
+                <%= link_to params.merge({assignee: as.login}), role: "menuitem" do %>
+                  <img src="<%= as.avatar_url %>" width="25px" height="25px"/> . <%= as.login %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>
+
+<table class="table table-striped">
+  <thead>
+  	<tr>
+  	<th>#</th>
+		<th>Issue title</th>
+		<th>State</th>
+	</tr>
+  </thead>
+  <tbody>
+  	<% @issues.each do |issue| %>	
+  		<tr>
+  			<td><%= issue.number %></td>
+  			<td>
+  				<h4><%= link_to issue.title, 'issue/'+issue.number.to_s %><br/>
+  				<small>opened at <%= issue.created_at %> by <%= issue.user.login %></small></h4>
+  			</td>
+        	<td><%= issue.state %>, <%= issue.id %></td>
+  		</tr>
+	<% end %>
+  </tbody>
+</table>
