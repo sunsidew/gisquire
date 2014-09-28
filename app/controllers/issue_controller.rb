@@ -40,6 +40,8 @@ class IssueController < ApplicationController
     @milestones = client.list_milestones(ENV['OCTOKIT_TARGET_REPO'])
     @labels = client.labels(ENV['OCTOKIT_TARGET_REPO'])
     @assignees = client.repo_assignees(ENV['OCTOKIT_TARGET_REPO'])
+
+    @states = ["open","closed","all"]
   end
 
   def show
