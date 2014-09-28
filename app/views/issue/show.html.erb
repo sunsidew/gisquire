@@ -1,2 +1,44 @@
-<h1>Issue#show</h1>
-<p>Find me in app/views/issue/show.html.erb</p>
+<h1><%= @issue.title %> <small>#<%= @issue.number %></small></h1>
+<p>state : [ <%= @issue.state %> ]</p>
+<p><img src="<%= @issue.user.avatar_url %>" width="25px" height="25px"/>
+	<%= @issue.user.login %> <small>opened this issue <%= @issue.created_at %></small>
+	, comment : <%= @issue.comments %></p>
+
+<dl class="dl-horizontal">
+	<dt>Milestones</dt>
+	<dd>
+		<% if @issue.milestone %>
+			<%= @issue.milestone.title %>
+		<% else %>
+			<small>No Milestone</small>
+		<% end %>
+	</dd>
+</dl>
+
+<dl class="dl-horizontal">
+	<dt>Labels</dt>
+	<% if @issue.labels.count <= 0 %>
+		<dd> <small>None yet</small> </dd>
+	<% end %>
+	
+	<% @issue.labels.each do |lb| %>
+		<dd>
+			<span class="glyphicon glyphicon-tag" style="color: #<%= lb.color %>;"></span>
+			<%= lb.name %>
+		</dd>
+	<% end %>
+</dl>
+
+<hr>
+	<%= @issue.body %>
+<hr>
+
+<h3>comments</h3>	
+
+<% @comments.each do |comm| %>
+<img src="<%= comm.user.avatar_url %>" width="25px" height="25px"/>
+<%= comm.user.login %> commented at <%= comm.created_at %>
+<hr>
+<%= comm.body %>
+<hr>
+<% end %>

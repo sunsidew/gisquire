@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
   
-  # get 'issue/index'
-  # get 'issue/show'
-  # get 'issue/edit'
-  # get 'issue/update'
-  # get 'issue/new'
-  # get 'issue/create'
   root 'access#index'
 
   get 'auth/:provider/callback', to: 'sessions#create'
@@ -13,7 +7,7 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get 'not_allow', to: 'access#not_allow'
 
-  resources :issue, only: [:index]
+  resources :issue, only: [:index, :show]
   resources :sessions, only: [:create, :destroy]
   
 
